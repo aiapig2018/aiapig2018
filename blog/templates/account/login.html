@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block content %}
+
+<!-- Wrapper -->
+<div id="wrapper" style="background-color: #ffffff;">
+
+
+
+
+                <div class="container">
+                    <div id="main" class="gradient">
+                            <article class="post" style="border: none;">
+                                
+
+				            	 <form action="." method="post">
+							        {{ form.as_p }}
+							        {% csrf_token %}
+							        <p><input type="submit" value="登录"></p>
+							    </form>
+
+
+                        </article><!--end Post -->
+                    </div><!-- end main -->
+                </div><!-- end container -->
+
+
+</div>
+
+
+{% endblock %}

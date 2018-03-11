@@ -1,0 +1,91 @@
+
+{% extends "base.html" %}
+{% load static %}
+<style type="text/css">
+  p {   
+    margin: 2em 0; */
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;  
+} 
+</style>
+
+{% block content %}
+
+<!-- Wrapper -->
+<div id="wrapper" style="background-color: #ffffff;">
+
+
+
+
+                <div class="container">
+                  <div class="row">
+
+                    <div class="col-md-6">
+                               <div class="pigloginleft">
+                                        
+
+                                
+                                        {% if form.errors %}
+                                        <div class="alert alert-warning alert-dismissible" role="alert" style="padding: .6em;">
+                                          密码/账号不正确.
+                                        </div>
+                                          
+                                        {% else %}
+                                           
+                                        {% endif %}
+
+                                          <form action="{% url 'login' %}" method="post">
+                                            {{ form.as_p }} 
+                                            {% csrf_token %}
+                                            <input type="hidden"  name="next" value="{{ next }}" />
+                                            <input style="width: 100%; color: #ffffff;" class="btn2 gradient ripple" type="submit" value="登录">
+                                          </form>
+                                         
+                                          
+                                          <p><a href="{% url "password_change" %}">我还记得密码？前往修改密码</a></p>
+                                          <p><a href="{% url "password_reset" %}">我已经忘记密码？前往重置密码</a></p>
+                                          <p>是否还没注册 <a href="{% url "register" %}">我还没注册？前往注册</a></p>
+
+                                       
+
+                                </div>
+
+
+                      </div><!-- end col-md-6 -->
+
+
+
+                      <div class="col-md-6">
+                        <div class="pigloginright">
+                          <img src="http://oyn2ywc3u.bkt.clouddn.com/bg.jpg">
+                        </div>
+                      </div>
+
+
+
+
+
+
+                  </div><!-- end row -->
+              </div><!-- end container -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+{% endblock %}

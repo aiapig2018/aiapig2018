@@ -1,0 +1,358 @@
+
+{% extends "base.html" %}
+{% load static %}
+
+{% load blog_tags %}
+
+{% if error_msg %}
+        <p>{{ error_msg }}</p>
+    {% endif %}
+
+
+
+
+
+
+
+
+{% block content %}
+ 
+
+
+
+    <section id="cd-introabc">
+        <div class="selfScale">
+         <img src="{% if post.image %}{{ post.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+        </div>
+         <div id="cd-introabc-taglineabc">
+            <a href="#" class="cd-btn ripple">更多图片</a>
+         </div> <!-- #cd-intro-taglineabc -->
+    </section> <!-- #cd-intro -->
+
+
+        
+
+
+
+
+
+
+    <div class="cd-secondary-navabc">
+        <a href="#0" class="cd-secondary-navabc-trigger">Menu<span></span></a> <!-- button visible on small devices -->
+        <nav>
+            <ul>
+                <li>
+                    <a href="#cd-placeholder-1">
+                        <b>详情</b>
+                        
+                    </a>
+                </li>
+                <li>
+                    <a href="#cd-placeholder-2">
+                        <b>位置</b>
+                        
+                    </a>
+                </li>
+                <li>
+                    <a href="#cd-placeholder-3">
+                        <b>资源</b>
+                        
+                    </a>
+                </li>
+                <li>
+                    <a href="#cd-placeholder-4">
+                        <b>评价</b>
+                        
+                    </a>
+                </li>
+                <li>
+                    <a href="#cd-placeholder-5">
+                        <b>联系方式</b>
+                        
+                    </a>
+                </li>
+               
+
+            </ul>
+        </nav>
+       
+    </div> <!-- .cd-secondary-navabc -->
+
+
+
+
+
+
+      <section class="container clearfix">   
+        <div class="row">
+          <div class="left-col">
+            <section id="cd-placeholder-1" class="cd-section cd-container">
+            <h2>{{ post.title }}</h2>
+            <p>地区|<a href="{% url 'blog:category' post.category.pk %}">{{ post.category.name }}</a></p>
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <p><a href="#">发布者：{{ post.author }}</a></p>
+                </div>
+                <div class="col-md-2"><p><a href="#cd-placeholder-4"><i class="fa fa-thumbs-o-up"></i>评价{{ post.comment_set.count }} </a></p></div>
+                <div class="col-md-4"> <p><a href="#"><i class="fa fa-paw"></i>阅读{{ post.views }}</a></p></div>
+                
+
+            </div>
+            
+            
+           
+           
+            <h3> {{ post.body|safe }}</h3>
+     
+
+              
+        </section> 
+
+        <section id="cd-placeholder-2" class="cd-section cd-container">
+            <h2>高德定位</h2>
+               
+                   
+                    <div style="width: 100%;
+                    height: 400px;">
+                        <div id="mapgaode"></div>
+                    </div> 
+             
+        </section> <!-- #cd-placeholder-2 -->
+
+        <section id="cd-placeholder-3" class="cd-section cd-container">
+            <h2>Looo</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem ab consequatur fugiat delectus sint in velit quo possimus, ullam aspernatur ipsa natus tenetur nulla distinctio doloremque totam. Earum enim sed dolorum, exercitationem temporibus quaerat eos, accusantium amet facilis facere eaque commodi optio quidem rem minima nisi laborum quae animi nostrum aut voluptates veniam. Cum neque quam fuga sapiente quidem eum necessitatibus nulla, cupiditate a, repudiandae iusto in dolor eaque commodi nostrum consequuntur dolores velit eligendi dolorem quae. Distinctio quae, cumque aliquid quos consequuntur perspiciatis voluptates, laboriosam velit qui et aut sint esse nemo voluptatibus, dolore veritatis natus facilis commodi sed. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat omnis quia maiores, et. Aut facilis ducimus, labore culpa, nemo eum qui quae, rem libero aspernatur, inventore quos modi a ex sit. Nulla iure odio at quo corporis assumenda ea fugiat adipisci aspernatur incidunt sapiente consequatur, ullam cumque dolorem facilis laboriosam a dolore similique velit esse. Eveniet omnis voluptas, nobis dicta cupiditate odit, similique mollitia eos dignissimos provident voluptatem adipisci ullam facilis alias! Reprehenderit voluptatem provident ut veniam aliquid, labore culpa.
+            </p>
+        </section> <!-- #cd-placeholder-3 -->
+
+
+        <section id="cd-placeholder-4" class="cd-section cd-container">
+            <h2>评论</h2>
+
+
+            
+          
+                    <h3>发表评论</h3>
+                    <form action="{% url 'comments:post_comment' post.pk %}" method="post" class="comment-form">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="{{ form.name.id_for_label }}">名字：</label>
+                                {{ form.name }}
+                                {{ form.name.errors }}
+                            </div>
+                            <div class="col-md-4">
+                                <label for="{{ form.email.id_for_label }}">邮箱：</label>
+                                {{ form.email }}
+                                {{ form.email.errors }}
+                            </div>
+                        
+                            <div class="col-md-12">
+                                <label for="{{ form.text.id_for_label }}">评论：</label>
+                                {{ form.text }}
+                                {{ form.text.errors }}
+                                <button type="submit" class="comment-btn">发表</button>
+                            </div>
+                        </div>    <!-- row -->
+                    </form>
+                    <div class="comment-list-panel">
+                        <h3>评论列表，共 <span>{{ post.comment_set.count }}</span> 条评论</h3>
+                        <ul class="comment-list list-unstyled">
+
+
+
+
+
+
+
+
+
+
+
+
+                            {% for comment in comment_list %}
+                                <li class="comment-item">
+                                  
+
+
+
+
+
+
+
+<div class="media" style="padding: 2em 0;">
+  <div class="media-left media-middle">
+    <a href="#">
+      <img class="media-object" src="..." alt="...">
+    </a>
+  </div>
+  <div class="media-body">
+    <h4 class="media-heading">{{ comment.name }}</h4>
+     <time class="submit-date" datetime="{{ comment.created_time }}">{{ comment.created_time }}</time>
+     <p> {{ comment.text }} </p>
+  </div>
+  <div class="media-right media-middle" >
+    <i class="fa fa-flag-o"></i>
+  </div>
+</div>
+
+
+
+
+
+
+                                </li>
+                            {% empty %}
+                                暂无评论
+                            {% endfor %}
+                        </ul>
+                    </div>
+        </section> <!-- #cd-placeholder-4 -->
+
+        <section id="cd-placeholder-5" class="cd-section cd-container">
+            <h2>Stats</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem ab consequatur fugiat delectus sint in velit quo possimus, ullam aspernatur ipsa natus tenetur nulla distinctio doloremque totam. Earum enim sed dolorum, exercitationem temporibus quaerat eos, accusantium amet facilis facere eaque commodi optio quidem rem minima nisi laborum quae animi nostrum aut voluptates veniam. Cum neque quam fuga sapiente quidem eum necessitatibus nulla, cupiditate a, repudiandae iusto in dolor eaque commodi nostrum consequuntur dolores velit eligendi dolorem quae. Distinctio quae, cumque aliquid quos consequuntur perspiciatis voluptates, laboriosam velit qui et aut sint esse nemo voluptatibus, dolore veritatis natus facilis commodi sed. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, neque, tempora. Accusamus similique labore harum in ut repellat. Earum iusto non ex perspiciatis sequi a, provident nam optio, vitae ea vel illum excepturi aut fugiat quos. Fugit facere a, quidem quia perferendis ipsum impedit eaque repellendus esse, tenetur repellat natus voluptatem ab possimus laborum tempora qui nam vero et omnis. Sed ipsum possimus in, dignissimos optio itaque quis, reprehenderit vero vel tempora, maiores odit totam. Doloribus voluptatem similique possimus corporis pariatur labore, nulla, minima magnam, officia rerum vel alias, molestiae soluta quisquam ea. Necessitatibus hic vitae nisi ipsum cum a voluptatibus commodi eius ad minus animi cumque nulla suscipit itaque, reiciendis placeat modi sequi eligendi voluptatum. Quasi veritatis autem omnis, voluptatum hic eos dicta, repudiandae iusto rem error facere pariatur commodi impedit reprehenderit temporibus facilis magnam asperiores. Ipsam, illum commodi laboriosam neque eligendi eaque quisquam quidem illo sint eos. Esse velit provident, veritatis dolor facilis dignissimos commodi molestias saepe impedit excepturi qui odit repudiandae cumque? Sunt omnis voluptatum, eaque repellat, pariatur iure nobis cum eos repellendus voluptate culpa totam alias autem ea earum animi optio laudantium neque nisi suscipit in adipisci enim quisquam laboriosam! Cumque, fugit saepe alias mollitia dignissimos.
+            </p>
+        </section> <!-- #cd-placeholder-5 -->
+          </div>
+          <div class="right-col">
+            <div class="pinned note-container" style="width: 350px;">
+                <div class="note cd-section" >
+                        <div class="row">
+                            <div class="col-md-6" style="color: #3fb34f;">
+                                <h1>
+                                    产品明细
+                                </h1>
+                            </div>
+                            
+                        </div><hr>
+                      
+
+                       
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>产品所属地</p>
+                            </div>
+                            <div class="col-md-6">
+                               <p><a href="{% url 'blog:category' post.category.pk %}">{{ post.category.name }}</a></p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>服务费</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>0</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p>总计</p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>100</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12" style="padding: 2em 0;">
+                                <button class="gradient ripple" style="color: #ffffff !important; width: 100%; border-radius: 4px; "  type="submit">申请预定
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h5>大家给予这个村落特别赞</h5>
+                            </div>
+                        </div>
+                        
+                    </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+
+
+
+
+
+
+<!-- j高德地图api -->
+
+     <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.2&key=53dd145d1832b75d48ec34f14088e523"></script>
+    <!-- UI组件库 1.0 -->
+    <script src="//webapi.amap.com/ui/1.0/main.js?v=1.0.11"></script>
+    <script type="text/javascript">
+    //创建地图
+   
+
+
+var map = new AMap.Map('mapgaode', {
+        resizeEnable: true,
+        zoom:8, // 初始缩放倍数
+        scrollWheel: false, // 禁止鼠标滚轮缩放
+
+       
+ });
+
+
+
+
+
+
+    AMapUI.loadUI(['control/BasicControl'], function(BasicControl) {
+
+        //添加一个缩放控件
+        map.addControl(new BasicControl.Zoom({
+            position: 'lt'
+        }));
+
+
+        //图层切换控件
+        map.addControl(new BasicControl.LayerSwitcher({
+            position: 'rt'
+        }));
+    });
+
+
+
+    var circle = new AMap.Circle({
+            center: new AMap.LngLat("108.2", "26.3"),// 圆心位置
+            radius: 100000, //半径
+            strokeColor: "#F33", //线颜色
+            strokeOpacity: 1, //线透明度
+            strokeWeight: 3, //线粗细度
+            fillColor: "#ee2200", //填充颜色
+            fillOpacity: 0.35//填充透明度
+        });
+        circle.setMap(map);
+
+
+
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
+
+        
+        
+        

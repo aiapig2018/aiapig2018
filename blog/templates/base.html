@@ -1,0 +1,572 @@
+{% load staticfiles %}
+{% load static %}
+{% load blog_tags %}
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+
+         <title>{% block title %}小黄村|深入大山里{% endblock %}</title>
+        
+
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+
+
+
+ <!-- blog继承 -->  
+
+        <!--jiben主框架样式-->
+        <!--[if lte IE 8]><script src="{% static 'blog/js/product1/jiben/ie/html5shiv.js' %}"></script><![endif]-->
+        <link rel="stylesheet" href= "{% static 'blog/css/product1/jiben/main.css' %}" />
+        <!--[if lte IE 9]><link rel="stylesheet" href= "{% static 'blog/css/product1/jiben/ie9.css' %}" /><![endif]-->
+        <!--[if lte IE 8]><link rel="stylesheet" href= "{% static 'blog/css/product1/jiben/ie8.css' %}" /><![endif]-->
+        <!--bootstrap样式-->
+        <link href= "{% static 'blog/css/bootstrap/bootstrap.css' %}"rel="stylesheet" media="screen">
+        <script src="{% static 'blog/js/bootstrap/jquery.js' %}"></script>
+        <script src="{% static 'blog/js/bootstrap/bootstrap.min.js' %}"></script>
+
+        <!-- 字体图标 -->
+        <link href= "{% static 'blog/fonts/font-awesome-3.2.1/css/font-awesome.css' %}"rel="stylesheet" media="screen">
+
+        <!-- 商家下拉弹出列表筛选 -->
+        <link href= "{% static 'blog/css/dts/bootstrap-select/paypal1/business/bootstrap-select.css' %}" rel="stylesheet" />
+        <script src="{% static 'blog/js/dts/bootstrap-select/paypal1/business/bootstrap-select.js' %}"></script>
+         <!-- 按钮波纹 -->
+        <link href="{% static 'blog/css/product1/jiben/ripple.css' %}" rel="stylesheet">
+
+
+
+
+
+<!-- list -->
+    <script src="{% static "list/js/modernizr.custom.js" %}"></script>
+
+
+<!-- 首页轮播图片 -->
+    
+    <link rel="stylesheet" href="{% static "lunbotu/css/style.css" %}"> <!-- Gem style -->
+    <script src="{% static "lunbotu/js/modernizr.js" %}"></script> <!-- Modernizr -->
+
+
+
+
+<!-- 村落分类2继承 -->
+    
+    <link rel="stylesheet" href="{% static "fenlei/css/style.css" %}"> <!-- Resource style -->
+    <script src="{% static "fenlei/js/modernizr.js" %}"></script> <!-- Modernizr -->
+
+
+
+
+
+
+<!-- detail继承 -->
+    <link rel="stylesheet" href="{% static "detail/css/reset.css"  %}"> <!-- CSS reset -->
+    <link rel="stylesheet" href="{% static "detail/css/style.css"  %}"> <!-- Resource style -->
+    <script src="{% static "detail/js/modernizr.js" %}"></script> <!-- Modernizr -->
+
+
+<style type="text/css">
+   
+        span.highlighted {
+            color: #f76d53;
+            
+        }
+   
+</style>
+
+
+
+<!-- input下拉地区选择 -->
+<link rel="stylesheet" href="{% static "blog/css/dts/aiainput/kuCity.css" %}">
+
+
+
+
+
+
+<!-- input图标清除 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--页面加载start-->
+<link rel="stylesheet" type="text/css" href="{% static "blog/css/zujian/loading/loader.css" %}">
+
+<script type="text/javascript">         
+    // 等待所有加载
+    $(window).load(function() {
+   $("#loading").fadeOut(500);
+})  
+</script>    
+
+
+
+
+<style type="text/css">
+  .st0{fill:#FF7A55;}
+  .st1{fill:#FFFFFF;}
+  .st2{font-family:'HYLiLiangHeiJ';}
+  .st3{font-size:74.9092px;}
+</style>
+
+
+
+
+
+<!-- 图钉插件开始 -->
+        <link rel="stylesheet" type="text/css" href="{% static "blog/css/product1/tuding/style.css" %}"/>
+<!-- 图钉插件结束 -->
+
+
+
+
+</head>
+
+
+
+<body class="single" >
+  
+
+
+<div id="loading">
+    <div id="loading-center">
+      <div id="loading-center-absolute">
+        <div class="object" id="first_object"></div>
+        <div class="object" id="second_object" style="float:right;"></div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+<!-- 导航条继承 -->
+    <nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">
+        <img alt="Brand" src="http://oyn2ywc3u.bkt.clouddn.com/23.png" style="width: 60px; height: 60px;">
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/list" target="_blank">全部村落</a></li>
+        <li><a href="/story" target="_blank">故事</a></li>
+        
+
+
+        <li class="dropdown" style="padding: 0em .5em;">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">发布</a>
+          <ul class="dropdown-menu" style="font-weight: 600; font-size: 18px;">
+
+            <li style="padding:1em;">开始赚取收入吧</li>
+            <li role="separator" class="divider"></li>
+            <li><a href="{% url "register" %}"><img src="https://png.icons8.com/cotton/50/000000/pumpkin.png">发布食材</a></li>
+            <li><a href="{% url "register" %}"><img src="https://png.icons8.com/color/48/000000/real-estate.png">发布民宿</a></li>               
+          </ul>
+        </li>
+
+
+
+
+
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">登录</a>
+          <ul class="dropdown-menu" style="font-weight: 600; font-size: 18px;">
+
+            <li style="padding: 0 1em;"><img src="http://oyn2ywc3u.bkt.clouddn.com/icons8-electomobile-50.png">开启闪购</li>
+            <li role="separator" class="divider"></li>
+            {% if request.user.is_authenticated %}
+                <h3 style="font-weight: 600; font-size: 16px; padding: 1em;">目前用户：{{ request.user.first_name }}</h3>
+                <li><a href="{% url "logout" %}">注销</a></li>
+                {% else %}
+                <li><a href="{% url "login" %}">登录</a></li>
+                <li><a href="{% url "register" %}">注册</a></li>
+            {% endif %}
+
+
+           {% if request.user.is_authenticated %}
+                            
+              <li {% if section == "edit" %} class="selected" {% endif %}>
+                  <a href="{% url "edit" %}">资料设置</a>
+              </li>
+              <li {% if section == "images" %} {{ request.user.photo }} class="selected" {% endif %}>
+                  <a href="#">图像</a>
+              </li>
+              <li {% if section == "people" %} class="selected" {% endif %}>
+                  <a href="#">用户</a>
+              </li>
+                            
+            {% endif %}
+                             
+          </ul>
+        </li>
+
+
+
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="menu">
+
+            <!-- Search -->
+              <section>
+                {% if request.user.is_authenticated %}
+                <h1 style="font-size: 30px;">{{ request.user.first_name }}</h1>
+                {% else %}
+                 <h3> <a href="{% url "login" %}">登录</a></h3>
+                 {% endif %}
+                <span class="logo"></span>
+              </section>
+
+            <!-- Links -->
+              <section>
+                <ul class="links">
+                   {% if request.user.is_authenticated %}
+                  <li {% if section == "edit" %} class="selected"{% endif %}>
+                     <a href="{% url "edit" %}" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">设置</a>
+                  </li>
+
+                  <li {% if section == "photo" %} class="selected"{% endif %} style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                    <a href="#">图像</a>
+                  </li>
+                    
+                  
+                  <li {% if section == "people" %} class="selected"{% endif %} style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                    <a href="#">用户</a>
+                  </li>
+
+                  <li style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                    <a href="{% url "logout" %}">注销</a>
+                  </li>
+
+                  
+
+
+                   {% endif %}
+
+
+
+                </ul>
+              </section>
+
+            
+
+          </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {% if messages %}
+    <div class="alert alert-warning alert-dismissible" role="alert" style="font-size: 14px;font-weight: 500px;width: auto; height: 30px; margin: 2em 0;">
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">
+                    {{ message|safe }}
+                    <a href="#" class="close">×</a>
+                </li>
+            {% endfor %}
+        </ul>
+        </div>
+    {% endif %}
+
+
+
+
+
+<!-- 内容继承 -->
+
+<!-- Wrapper -->
+<div id="wrapper" style="background-color: #ffffff;">
+    {% block content %} {% endblock %}
+</div>
+
+
+
+
+
+
+
+
+
+<!-- 底部品牌继承 -->
+            <section id="footer">
+
+                
+              <div style="padding: 2em;">
+                  <div class="row">
+                     <div class="col-xs-10 col-xs-offset-2 col-md-8 col-md-offset-2">
+
+                      <div class="col-md-3">
+                        <p class="title_footer">小黄村</p>
+                        <ul>
+                          <li><a href="/">加入我们</a></li>
+                          <li><a href="/">如何预定</a></li>
+                          <li><a href="/">村落入驻</a></li>
+                        </ul>
+                      </div>
+                       
+                       <div class="col-md-3">
+                        <p class="title_footer">黄金村落</p>
+                        <ul>
+                          <li><a href="/">“黄金村落”简介</a></li>
+                          <li><a href="/">申请条件</a></li>
+                          <li><a href="/">申请“黄金村落”</a></li>
+                          <li><a href="/">黄金村落的福利</a></li>
+                        </ul>
+                       </div>
+
+                       <div class="col-md-3">
+                        <p class="title_footer">商家入驻</p>
+                        <ul>
+                          <li><a href="/">入驻条件</a></li>
+                          <li><a href="/">关于利润</a></li>
+                        </ul>
+                       </div>
+
+                       <div class="col-md-3">
+                        <p class="title_footer">加入我们</p>
+                        <ul>
+                          <li><a href="/">青年X计划</a></li>
+                          <li><a href="/">申请条件</a></li>
+                          <li><a href="/">联系我们</a></li>
+                        </ul>
+                       </div>
+                     </div>
+                  </div>
+
+                </div>
+
+                                
+                    <div class="col-xs-10 col-xs-offset-1 col-md-8 col-md-offset-2 legal">
+                        <div class="col-md-6">
+                          <p>© 2018-2020 小黄村（贵州）电子商务有限责任公司</p>
+                        </div>
+                        <div class="col-md-6">
+                          <p>微信公众号|微博</p>
+                        </div>
+                      </div>
+ 
+
+
+ </section>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- detail继承 -->
+
+  <!--bootstrap select2筛选初始化插件 -->
+            <script>
+              $(document).ready(function () {
+                var mySelect = $('#first-disabled2');
+
+                $('#special').on('click', function () {
+                  mySelect.find('option:selected').prop('disabled', true);
+                  mySelect.selectpicker('refresh');
+                });
+
+                $('#special2').on('click', function () {
+                  mySelect.find('option:disabled').prop('disabled', false);
+                  mySelect.selectpicker('refresh');
+                });
+              });
+            </script>
+
+
+            <!-- tab轮播开始 -->
+            <link rel="stylesheet" type="text/css" href= "{% static 'blog/css/dts/bootstrap-tabslider/tabs.css' %}" />
+            <link rel="stylesheet" type="text/css" href= "{% static 'blog/css/dts/bootstrap-tabslider/tabstyles.css' %}"  />
+            <!-- tab轮播插件 -->
+            <script src="{% static 'blog/js/dts/bootstrap-tabslider/cbpFWTabs.js' %}"></script>
+            <script>
+                (function() {
+
+                    [].slice.call( document.querySelectorAll( '.tabs' ) ).forEach( function( el ) {
+                        new CBPFWTabs( el );
+                    });
+
+                })();
+            </script>
+
+
+            <!-- 时间插件开始 -->
+            <link href="{% static 'blog/css/product1/shijian/datepicker.css' %}" rel="stylesheet">
+            <!-- 时间插件开始
+             ================================================== -->
+            <script src="{% static 'blog/js/product1/shijian/bootstrap-datepicker.js' %}"></script>
+            <script>
+                var nowTemp = new Date();
+                var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+                 
+                var checkin = $('#dpd1').datepicker({
+                  onRender: function(date) {
+                    return date.valueOf() < now.valueOf() ? 'disabled' : '';
+                  }
+                }).on('changeDate', function(ev) {
+                  if (ev.date.valueOf() > checkout.date.valueOf()) {
+                    var newDate = new Date(ev.date)
+                    newDate.setDate(newDate.getDate() + 1);
+                    checkout.setValue(newDate);
+                  }
+                  checkin.hide();
+                  $('#dpd2')[0].focus();
+                }).data('datepicker');
+                var checkout = $('#dpd2').datepicker({
+                  onRender: function(date) {
+                    return date.valueOf() <= checkin.date.valueOf() ? 'disabled' : '';
+                  }
+                }).on('changeDate', function(ev) {
+                  checkout.hide();
+                }).data('datepicker');
+
+            </script>
+
+
+            <!-- jiben主框架js -->
+                <script src="{% static 'blog/js/product1/jiben/jquery.min.js' %}"></script>
+                <script src="{% static 'blog/js/product1/jiben/skel.min.js' %}"></script>
+                <script src="{% static 'blog/js/product1/jiben/util.js' %}"></script>
+                <!--[if lte IE 8]><script src="{% static 'blog/js/jiben/product1/ie/respond.min.js' %}"></script><![endif]-->
+                <script src="{% static 'blog/js/product1/jiben/main.js' %}"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 村落分类2继承 -->
+    <script src="{% static "fenlei/js/jquery-2.1.0.min.js" %}"></script>
+    <script src="{% static "fenlei/js/jquery.mobile.custom.min.js" %}"></script>
+    <script src="{% static "fenlei/js/main.js" %}"></script> <!-- Resource jQuery -->
+
+
+
+
+<!-- detail继承 -->
+<script src="{% static "detail/js/main.js" %}"></script> <!-- Resource jQuery -->
+
+
+
+
+
+
+<!-- 图钉插件开始 -->
+
+
+    <!-- Include jQuery and jquery.pin -->
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="{% static "blog/js/product1/tuding/jquery.pin.js" %}"></script>
+
+
+    <!-- PIN ALL THE THINGS! -->
+    <script>
+      $(".pinned").pin({containerSelector: ".container", minWidth: 940});
+    </script>
+    <!-- That's all - pretty easy, right? -->
+
+<!-- 图钉插件结束 -->
+
+
+ 
+<!-- 首页轮播图片 -->   
+<script src="{% static "lunbotu/js/jquery-1.11.0.min.js" %}"></script>
+<script src="{% static "lunbotu/js/main.js" %}"></script> <!-- Gem jQuery -->
+
+
+
+
+
+
+
+
+
+
+    <script src="{% static "blog/js/dts/aiainput/kuCity.js" %}"></script>
+    <script>
+    $('.search').kuCity();
+    $('.search3').kuCity();
+    </script>
+
+
+
+
+
+
+
+
+</body>
+</html>
